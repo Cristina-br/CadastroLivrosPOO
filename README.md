@@ -1,34 +1,112 @@
-# CadastroLivrosPOO
-Exercício de POO em Java
+# CadastroLivrosPOO 📚
 
-IFRN-Campus Currais Novos
-Exercícios de POO – Conceitos iniciais
-Prof. Bruno E. G. Gomes
-07/03/2013
+Exercício de **Programação Orientada a Objetos (POO)** em Java.  
+**IFRN - Campus Currais Novos**  
+*Prof. Bruno E. G. Gomes*  
+*07/03/2013*
 
-1 – Diferencie o conceito e classe do conceito de objeto.
+---
 
-2 – O que é um método construtor? Toda classe deve ter um método construtor? (justifique)
+## 📌 Exercícios sobre Conceitos Iniciais de POO
 
-3 – Qual (is) a(s) vantagem(ens) de declarar um atributo de uma classe como privado (private)?
+### 1. Diferencie o conceito de **classe** do conceito de **objeto**.
+*(Resposta esperada: Definição de classe como modelo/template e objeto como instância concreta.)*
 
-4 – Todo método declarado em uma classe deve ser público (public) ? (justifique)
+### 2. O que é um **método construtor**? Toda classe deve ter um método construtor? *(Justifique)*.
+*(Resposta esperada: Explicação sobre inicialização de objetos e se há construtores padrão.)*
 
-5 – Crie uma classe Livro, contendo os seguintes atributos (ISBN, nome, ano de publicação, autor
-e editora).
-a) Adicione métodos para modificar e obter (consultar) os valores desses atributos. Esses
-métodos devem ser públicos e os atributos privados. Leve em consideração que um
-ISBN válido deve possuir 13 dígitos e que o ano de publicação do livro deve ser menor
-ou igual que 2013.
-b) Crie dois construtores de livro, um vazio, que inicialize todos os atributos com seus
-valores padrão e outro que receba todas as informações necessárias para se criar um
-novo livro.
-c) Considere que Autor e Editora também são classes. Crie essas classes e modifique o
-tipo dos atributos autor e livro na classe Livro. Um autor deve possuir nome, data de
-nascimento, cpf e endereço. Uma Editora deve possuir nome, a cidade onde está
-localizada, cnpj, endereço e um telefone. Assim como foi feito para livro, crie os métodos
-necessários para inserir e obter as informações de autores e editoras.
+### 3. Qual(is) a(s) vantagem(ens) de declarar um atributo como `private`?
+*(Resposta esperada: Encapsulamento, controle de acesso e segurança.)*
 
-6 – No método main do seu programa, leia as informações necessárias e crie livros com os dois
-construtores que vocês definiu. Nesse caso, antes de criar um livro, crie objetos cliente e editora,
-uma vez que esses são necessários para definir um livro.
+### 4. Todo método declarado em uma classe deve ser `public`? *(Justifique)*.
+*(Resposta esperada: Discussão sobre encapsulamento e métodos internos.)*
+
+---
+
+## 🛠️ Implementação da Classe `Livro`
+
+### 📋 Atributos da Classe `Livro` (todos `private`):
+
+| Atributo         | Tipo     | Validação               |
+|------------------|----------|-------------------------|
+| `isbn`           | String   | 13 dígitos (`validarIsbn`) |
+| `nome`           | String   | -                       |
+| `anoPublicacao`  | int      | ≤ 2013 (`validarAno`)   |
+| `autor`          | `Autor`  | -                       |
+| `editora`        | `Editora`| -                       |
+
+### 🔧 Métodos:
+- **Getters e Setters** públicos para todos os atributos.
+- Validações:
+  - ISBN deve ter 13 dígitos.
+  - Ano de publicação ≤ 2013.
+
+### 🏗️ Construtores:
+1. **Construtor vazio**: Inicializa atributos com valores padrão.
+2. **Construtor completo**: Recebe todos os dados necessários.
+
+---
+
+## 🧩 Classes Adicionais
+
+### 👨‍💻 Classe `Autor` (`private`):
+| Atributo          | Tipo     | Validação               |
+|-------------------|----------|-------------------------|
+| `nome`            | String   | -                       |
+| `dataNascimento`  | String   | -                       |
+| `cpf`             | String   | -                       |
+| `endereco`        | String   | -                       |
+
+### 🏢 Classe `Editora` (`private`):
+| Atributo          | Tipo     | Validação               |
+|-------------------|----------|-------------------------|
+| `nome`            | String   | -                       |
+| `cidade`          | String   | -                       |
+| `cnpj`            | String   | -                       |
+| `endereco`        | String   | -                       |
+| `telefone`        | String   | -                       |
+
+**Métodos**: Getters e Setters públicos para ambas as classes.
+
+---
+
+## 🖥️ Classe `Main`
+
+| Componente        | Tipo/Retorno     | Descrição               |
+|-------------------|------------------|-------------------------|
+| `scanner`         | `Scanner`        | Leitura de inputs       |
+| `opcao`           | `int`            | Seleção do menu (1-3)   |
+| `livro`           | `Livro`          | Contêiner principal     |
+
+**Fluxo Principal**:
+1. Exibe menu interativo
+2. Valida entradas (ISBN 13 dígitos, ano ≤ 2013)
+3. Instancia `Autor`, `Editora` e `Livro`
+4. Gerencia coleção via `AdicionarLivro()`
+
+## ▶️ Como Executar
+
+```bash
+javac POOLivro/Main.java
+java POOLivro.Main
+```
+## 🖱️ Menu do Sistema
+
+```text
+==== MENU ====
+1. Inserir livro
+2. Listar livros
+3. Sair
+```
+## 📊 Exemplo de Saída
+
+```bash
+---- Livros Cadastrados ----
+ISBN: 9788535911233
+Título: Dom Casmurro
+Ano: 1899
+Autor: Machado de Assis
+CPF: 123.456.789-00
+Editora: Companhia das Letras
+CNPJ: 12.345.678/0001-99
+Telefone: (11) 9876-5432
